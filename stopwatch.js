@@ -5,11 +5,11 @@ document.querySelector('#start').addEventListener('click', function() { setInter
 var seconds = 0;
 var tenthSeconds = 0;
 var minutes = 0;
-var t = 0;
+var t
 
-// var red = Math.round(Math.random() * 255);
-// var green = Math.round(Math.random() * 255);
-// var blue = Math.round(Math.random() * 255);
+var red = Math.round(Math.random() * 255);
+var green = Math.round(Math.random() * 255);
+var blue = Math.round(Math.random() * 255);
 
 function startTimer(e) {
     tenthSeconds++;
@@ -19,15 +19,30 @@ function startTimer(e) {
     if (tenthSeconds >= 99) {
         tenthSeconds = 0;
         seconds++;
+        //document.h1.style.color = `rgb(${red}, ${green}, ${blue})`;
     }
 
     else if (seconds >= 60) {
         seconds = 0;
         minutes++;
-        //target.e.style.color = `rgb(${red}, ${green}, ${blue})`;
     }
-
 }     
+
+document.querySelector('#start').addEventListener('click', function (e) {
+    var startButton = e.target;
+    if (startButton.innerHTML === 'Start') {
+        startButton.innerHTML = 'Pause';
+        var interval = setInterval(startTimer, 10)
+    }
+    else if (startButton.innerHTML === 'Pause') {
+        startButton.innerHTML = 'Resume';
+        clearInterval(interval);
+    }
+    else if (startButton.innerHTML === 'Resume') {
+        startButton.innerHTML = 'Pause';
+        interval = setInterval(startTimer, 10)
+    }
+});
 
 
 // PAUSE ATTEMPTS

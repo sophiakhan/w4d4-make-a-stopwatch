@@ -23,3 +23,26 @@ function stopWatch(e) {
         // Change button to say "Resume"
         e.target.innerHTML = 'Resume';
         }
+
+//
+
+document.querySelector('#start').addEventListener('click', function (e) {
+    var startButton = e.target;
+    if (startButton.innerHTML === 'Start') {
+        startButton.innerHTML = 'Pause';
+        interval = setInterval(startTimer, 10)
+        colorInterval = setInterval(colorTimer, 1000);
+    }
+    else if (startButton.innerHTML === 'Pause') {
+        startButton.innerHTML = 'Resume';
+        clearInterval(interval);
+        clearInterval(colorInterval);
+        timeoutInterval = setInterval(timeout, 15000)
+    }
+    else if (startButton.innerHTML === 'Resume') {
+        startButton.innerHTML = 'Pause';
+        interval = setInterval(startTimer, 10)
+        colorInterval = setInterval(colorTimer, 1000);
+    }
+   
+});
